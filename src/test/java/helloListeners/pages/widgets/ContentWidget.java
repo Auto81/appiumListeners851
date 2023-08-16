@@ -10,14 +10,18 @@ public class ContentWidget extends Widget {
     public ContentWidget(WebElement element) {
         super(element);
         //Needs included when calling explicit new ContentWidget() from TopPage, 'Normal WebElement'
-        PageFactory.initElements(new AppiumFieldDecorator(element), this);
+        //PageFactory.initElements(new AppiumFieldDecorator(element), this);
         System.out.println("ContentWidget constructor called");
     }
 
     @FindBy(xpath = ".//p")
-    private WebElement paragraph;
+    private WebElement paragraph1;
 
-    public String getParagraphText() {
-        return paragraph.getText();
+    @FindBy(xpath = ".//p")
+    private WebElement paragraph2;
+
+    public String getParagraph1Text() {
+        System.out.println("------------------------------");
+        return paragraph1.getText();
     }
 }

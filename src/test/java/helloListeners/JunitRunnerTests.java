@@ -71,11 +71,12 @@ public class JunitRunnerTests {
 
         //When page/widgets are decorated 'pomCount' times
         System.out.println("Loading POMs");
-        for (int i = 0; i <= pomCount + 1; i++) {
-            System.out.println("POM " + i);
+        for (int i = 0; i <= pomCount; i++) {
+            System.out.println("************************ POM " + i);
             pages.add(new TopPage
                     (driver)); //No hangover
         }
+        System.out.println("************************");
 
         System.out.println("Getting a POM");
         TopPage page = pages.get(pomCount);
@@ -87,14 +88,15 @@ public class JunitRunnerTests {
         ContentWidget widget = page.getLargeContentWidget(); //No listener hangover
 
         System.out.println("Getting text from the widget");
+        System.out.println("------------------------------");
 
         //each getParagraphText() below causes a listener hangover when decorated @FindBy(xxx) LargeContentWidget on the page
         //However when 'Normal WebElement' with a new ContentWidget constructor is used, the listeners don't hangover
-        String widgetString = widget.getParagraphText();//this causes a listener hangover
-        widget.getParagraphText(); //this causes a listener hangover
-        widget.getParagraphText(); //this causes a listener hangover
-        widget.getParagraphText(); //this causes a listener hangover
-        widget.getParagraphText(); //this causes a listener hangover
+        String widgetString = widget.getParagraph1Text();//this causes a listener hangover
+        widget.getParagraph1Text(); //this causes a listener hangover
+        widget.getParagraph1Text(); //this causes a listener hangover
+        widget.getParagraph1Text(); //this causes a listener hangover
+        widget.getParagraph1Text(); //this causes a listener hangover
 
         Assertions.assertEquals(
                 pageString
